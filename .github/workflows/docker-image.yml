@@ -37,13 +37,13 @@ jobs:
           host: ${{ secrets.VPS_HOST }}
           username: ${{ secrets.VPS_USERNAME }}
           key: ${{ secrets.DOCKER_SSH_PRIVATE_KEY }}
-          port: 22
+          port: 1794
           script: |
             # Pull the latest image from DockerHub
             docker pull calixteair/calixteairdocker:eatMeApi
 
             # Navigate to the project directory (if needed)
-            cd /path/to/your/docker-compose/project
+            cd ${{ secrets.PATH_TO_DCOMPOSE }}
 
             # Restart the Docker containers with docker-compose
             docker-compose down
