@@ -17,13 +17,14 @@ const Client = {
 
   create: (client, callback) => {
     const query = `
-      INSERT INTO CLIENT (firstName, lastName, email, dateOfBirth, extraNapkins, frequentRefill)
-      VALUES (?, ?, ?, ?, ?, ?)
+      INSERT INTO CLIENT (firstName, lastName, email,password, dateOfBirth, extraNapkins, frequentRefill)
+      VALUES (?, ?,?, ?, ?, ?, ?)
     `;
     const params = [
       client.firstName,
       client.lastName,
       client.email,
+      client.password || 'mdp',
       client.dateOfBirth,
       client.extraNapkins || 0,
       client.frequentRefill || 0,
@@ -36,7 +37,7 @@ const Client = {
   update: (id, client, callback) => {
     const query = `
       UPDATE CLIENT
-      SET firstName = ?, lastName = ?, email = ?, dateOfBirth = ?, extraNapkins = ?, frequentRefill = ?
+      SET firstName = ?, lastName = ?, password = ? , email = ?, dateOfBirth = ?, extraNapkins = ?, frequentRefill = ?
       WHERE idClient = ?
     `;
     const params = [
@@ -44,6 +45,7 @@ const Client = {
       client.lastName,
       client.email,
       client.dateOfBirth,
+      client.password || 'mdp',
       client.extraNapkins || 0,
       client.frequentRefill || 0,
       id,

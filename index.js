@@ -2,6 +2,7 @@ const express = require('express');
 const dishRoutes = require('./routes/dishRoutes');
 const clientRoutes = require('./routes/clientRoutes');
 const orderRoutes = require('./routes/orderRoutes');
+const authRoutes = require('./routes/authRoutes');
 const orderLineRoutes = require('./routes/orderLineRoutes');
 const swaggerJsdoc = require('swagger-jsdoc');
 const swaggerUi = require('swagger-ui-express');
@@ -41,9 +42,9 @@ app.use('/api/dishes', dishRoutes);
 app.use('/api/clients', clientRoutes);
 app.use('/api/orders', orderRoutes);
 app.use('/api/order-lines', orderLineRoutes);
+app.use('/api/auth' , authRoutes);
 
 // Start the server
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
-  console.log("test");
 });

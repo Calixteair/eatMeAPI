@@ -2,7 +2,7 @@ const db = require('../database');
 
 const Dish = {
   getAll: (callback) => {
-    const query = 'SELECT * FROM DISH';
+    const query = 'SELECT idDish as id , name,description,price,calories,proteins,carbs , imageURL as URLimage FROM DISH';
     db.all(query, [], (err, rows) => {
       callback(err, rows);
     });
