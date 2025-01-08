@@ -1,27 +1,22 @@
 const express = require('express');
-const {
-  getAllOrders,
-  getOrderById,
-  createOrder,
-  updateOrder,
-  deleteOrder,
-} = require('../controllers/orderController');
-
 const router = express.Router();
+const orderController = require('../controllers/orderController');
 
-// GET all orders
-router.get('/', getAllOrders);
+// Ajouter un article (création de commande si nécessaire)
+router.post('/addItem', orderController.addItem);
 
-// GET a single order by ID
-router.get('/:id', getOrderById);
+// Finaliser une commande
+router.post('/finalize', orderController.finalizeOrder);
 
-// POST a new order
-router.post('/', createOrder);
+// Ajuster la quantité d'un article ou le retirer si quantité <= 0
+router.post('/adjustItem', orderController.adjustItemQuantity);
 
-// PUT (update) an existing order
-router.put('/:id', updateOrder);
+// Retirer un article d'une commande en cours
+router.post('/removeItem', orderController.removeItem);
 
-// DELETE an order
-router.delete('/:id', deleteOrder);
+
+router.get('/client/:id', orderController.getOrderByIdClient);
+router.get('/:id', orderController.getOrderById);
+
 
 module.exports = router;

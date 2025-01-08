@@ -5,7 +5,6 @@ exports.getAllDishes = (req, res) => {
     if (err) {
       res.status(500).json({ error: err.message });
     } else {
-      console.log(dishes);
       res.json(dishes);
     }
   });
