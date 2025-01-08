@@ -184,7 +184,7 @@ router.put('/:id', updateClient);
  * @swagger
  * /api/clients/{id}:
  *   delete:
- *     summary: Supprime un client
+ *     summary: Supprime un client test
  *     parameters:
  *       - in: path
  *         name: id
