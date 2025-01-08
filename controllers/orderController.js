@@ -10,6 +10,9 @@ exports.addItem = (req, res) => {
 
   // Vérifier si une commande en attente existe
     Order.getPendingOrderByClient(idClient, (err, order) => {
+
+      console.log("[ADD ITEM] Order : ", order , " idClient : ", idClient);
+
         if (err) {
         return res.status(500).json({ error: err.message });
         }
@@ -35,7 +38,7 @@ exports.addItem = (req, res) => {
         const idOrder = order.idOrder;
 
         // Ajouter l'article à la commande
-        Order.addItemToOrder(idOrder, idDish, quantity, pricePerDish, (err, result) => {
+        Order.addItemToOrder(idOrder, idDish, quantity, (err, result) => {
             if (err) {
             return res.status(500).json({ error: err.message });
             }

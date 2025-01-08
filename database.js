@@ -54,7 +54,6 @@ function initializeDatabase() {
       CREATE TABLE IF NOT EXISTS "ORDER" (
                                            idOrder INTEGER PRIMARY KEY AUTOINCREMENT,
                                            dateOrder TEXT NOT NULL,
-                                           totalPrice REAL NOT NULL,
                                            idClient INTEGER NOT NULL,
                                            idStatus INTEGER NOT NULL DEFAULT 1,
                                            FOREIGN KEY (idClient) REFERENCES CLIENT(idClient),
@@ -104,13 +103,13 @@ function initializeDatabase() {
 
     // Insertion dans "ORDER"
     db.run(`
-      INSERT INTO "ORDER" (dateOrder, totalPrice, idClient, idStatus)
+      INSERT INTO "ORDER" (dateOrder, idClient, idStatus)
       VALUES
-        ('2024-01-01', 25.98, 1, 1),
-        ('2024-01-02', 12.99, 2, 2),
-        ('2024-01-03', 30.50, 3, 1),
-        ('2024-01-04', 45.00, 4, 1),
-        ('2024-01-05', 20.00, 1, 2);
+        ('2024-01-01', 1, 1),
+        ('2024-01-02', 2, 2),
+        ('2024-01-03', 3, 1),
+        ('2024-01-04', 4, 1),
+        ('2024-01-05', 1, 2);
     `);
 
     // Insertion dans ORDER_LINE

@@ -3,8 +3,8 @@ const db = require('../database');
 // Créer une nouvelle commande et retourner son ID
 exports.createEmptyOrder = (idClient, callback) => {
   const query = `
-    INSERT INTO "ORDER" (dateOrder, totalPrice, idClient, idStatus) 
-    VALUES (datetime('now'), 0, ?, 1)
+    INSERT INTO "ORDER" (dateOrder, idClient, idStatus) 
+    VALUES (datetime('now'), ?, 1)
   `;
   db.run(query, [idClient], function (err) {
     if (err) return callback(err);
@@ -103,8 +103,9 @@ exports.getItemQuantity = (idOrder, idDish, callback) => {
 
 exports.getOrderByClient = (idClient, callback) => {
   const query = `
-    SELECT "ORDER".idOrder as id , "ORDER".totalPrice , SUM(OL.quantity) as quantity FROM "ORDER" 
+    SELECT "ORDER".idOrder as id , SUM(OL.quantity * D.price )as totalPrice , SUM(OL.quantity) as quantity FROM "ORDER" 
     INNER JOIN main.ORDER_LINE OL on "ORDER".idOrder = OL.idOrder
+    INNER JOIN main.DISH D on D.idDish = OL.idDish                                                 
     WHERE idClient = ?
     GROUP BY "ORDER".idOrder , "ORDER".dateOrder
     ORDER BY "ORDER".dateOrder DESC
