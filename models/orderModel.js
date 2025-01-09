@@ -39,7 +39,7 @@ exports.addItemToOrder = (idOrder, idDish, quantity, callback) => {
 exports.finalizeOrder = (idOrder, callback) => {
   const query = `
     UPDATE "ORDER" 
-    SET idStatus = 3 -- 3 = Livrée ou Finalisée
+    SET idStatus = 2 -- 3 = Livrée ou Finalisée
     WHERE idOrder = ?
   `;
   db.run(query, [idOrder], function (err) {
@@ -103,9 +103,10 @@ exports.getItemQuantity = (idOrder, idDish, callback) => {
 
 exports.getOrderByClient = (idClient, callback) => {
   const query = `
-    SELECT "ORDER".idOrder as id , SUM(OL.quantity * D.price )as totalPrice , SUM(OL.quantity) as quantity FROM "ORDER" 
+    SELECT "ORDER".idOrder as id , SUM(OL.quantity * D.price )as totalPrice , SUM(OL.quantity) as quantity ,OS.statusName as status  FROM "ORDER" 
     INNER JOIN main.ORDER_LINE OL on "ORDER".idOrder = OL.idOrder
-    INNER JOIN main.DISH D on D.idDish = OL.idDish                                                 
+    INNER JOIN main.DISH D on D.idDish = OL.idDish               
+    INNER JOIN main.ORDER_STATUS OS on OS.idStatus = "ORDER".idStatus
     WHERE idClient = ?
     GROUP BY "ORDER".idOrder , "ORDER".dateOrder
     ORDER BY "ORDER".dateOrder DESC
