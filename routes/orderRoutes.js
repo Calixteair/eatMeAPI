@@ -6,13 +6,13 @@ const orderController = require('../controllers/orderController');
 router.post('/addItem', orderController.addItem);
 
 // Finaliser une commande
-router.post('/finalize', orderController.finalizeOrder);
+router.post('/finalize/:idOrder', orderController.finalizeOrder);
 
 // Ajuster la quantité d'un article ou le retirer si quantité <= 0
 router.post('/adjustItem', orderController.adjustItemQuantity);
 
 // Retirer un article d'une commande en cours
-router.post('/removeItem', orderController.removeItem);
+router.post('/remove', orderController.removeItem);
 
 
 router.get('/client/:id', orderController.getOrderByIdClient);

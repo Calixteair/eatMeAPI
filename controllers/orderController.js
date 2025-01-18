@@ -51,7 +51,9 @@ exports.addItem = (req, res) => {
 
 // Finaliser une commande
 exports.finalizeOrder = (req, res) => {
-  const { idOrder } = req.body;
+    const idOrder = req.params.idOrder;
+
+  console.log("[FINALIZE ORDER] idOrder : ", idOrder);
 
   if (!idOrder) {
     return res.status(400).json({ error: 'Missing required fields: idOrder' });
