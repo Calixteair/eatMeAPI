@@ -43,22 +43,21 @@ const loginAccount = (req, res) => {
 
 // Inscription d'un nouvel utilisateur
 const registerAccount = (req, res) => {
-    const { firstName, lastName, email, password, dateOfBirth, extraNapkins, frequentRefill } = req.body;
+    const { first_name, last_name, email, password, date_of_birth, } = req.body;
     console.log('[REGISTER] Tentative de création de compte pour l\'email :', email);
 
-    if (!firstName || !lastName || !email || !password) {
+    if (!first_name || !last_name || !email || !password) {
         console.warn('[REGISTER][ERREUR] Champs requis manquants.');
-        return res.status(400).json({ error: 'Tous les champs requis (sauf extraNapkins et frequentRefill)' });
+        console.log(req.body);
+        return res.status(401).json({ error: 'Tous les champs requis' });
     }
 
     const newClient = {
-        firstName,
-        lastName,
+        first_name,
+        last_name,
         email,
-        password, // ⚠️ Stockage en clair (à améliorer avec un hashage sécurisé)
-        dateOfBirth,
-        extraNapkins,
-        frequentRefill,
+        password,
+        date_of_birth,
     };
 
     console.log('[REGISTER] Données du nouvel utilisateur :', newClient);

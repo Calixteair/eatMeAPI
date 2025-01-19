@@ -4,7 +4,7 @@ const db = require('../database');
 exports.createEmptyOrder = (idClient, callback) => {
   const query = `
     INSERT INTO "ORDER" (dateOrder, idClient, idStatus) 
-    VALUES (datetime('now'), ?, 1)
+    VALUES (date('now'), ?, 1)
   `;
   db.run(query, [idClient], function (err) {
     if (err) return callback(err);
@@ -103,7 +103,7 @@ exports.getItemQuantity = (idOrder, idDish, callback) => {
 
 exports.getOrderByClient = (idClient, callback) => {
   const query = `
-    SELECT "ORDER".idOrder as id , SUM(OL.quantity * D.price )as totalPrice , SUM(OL.quantity) as quantity ,OS.statusName as status  FROM "ORDER" 
+    SELECT "ORDER".idOrder as id , SUM(OL.quantity * D.price )as totalPrice , SUM(OL.quantity) as quantity ,OS.statusName as status , dateOrder FROM "ORDER" 
     INNER JOIN main.ORDER_LINE OL on "ORDER".idOrder = OL.idOrder
     INNER JOIN main.DISH D on D.idDish = OL.idDish               
     INNER JOIN main.ORDER_STATUS OS on OS.idStatus = "ORDER".idStatus

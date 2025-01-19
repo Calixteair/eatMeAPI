@@ -6,7 +6,7 @@ const authRoutes = require('./routes/authRoutes');
 const swaggerJsdoc = require('swagger-jsdoc');
 const swaggerUi = require('swagger-ui-express');
 const db = require('./database');
-
+require('dotenv').config();
 const app = express();
 const PORT = process.env.PORT || 3000;
 

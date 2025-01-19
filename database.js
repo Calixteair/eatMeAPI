@@ -37,9 +37,7 @@ function initializeDatabase() {
                                           lastName TEXT NOT NULL,
                                           email TEXT UNIQUE NOT NULL,
                                           password TEXT NOT NULL,
-                                          dateOfBirth TEXT,
-                                          extraNapkins INTEGER DEFAULT 0,
-                                          frequentRefill INTEGER DEFAULT 0
+                                          dateOfBirth TEXT
       )
     `);
 
@@ -106,12 +104,12 @@ function initializeDatabase() {
 
     // Insertion dans CLIENT
     db.run(`
-      INSERT INTO CLIENT (firstName, lastName, email, password, dateOfBirth, extraNapkins, frequentRefill)
+      INSERT INTO CLIENT (firstName, lastName, email, password, dateOfBirth)
       VALUES
-        ('John', 'Doe', 'email1@mail.com', 'mdp', '1990-01-01', 1, 0),
-        ('Jane', 'Doe', 'email2@mail.com', 'mdp', '1995-01-01', 0, 1),
-        ('Alice', 'Smith', 'email3@mail.com', 'mdp', '1985-06-15', 1, 1),
-        ('Bob', 'Brown', 'email4@mail.com', 'mdp', '2000-12-10', 0, 0);
+        ('John', 'Doe', 'email1@mail.com', 'mdp', '1990-01-01'),
+        ('Jane', 'Doe', 'email2@mail.com', 'mdp', '1995-01-01'),
+        ('Alice', 'Smith', 'email3@mail.com', 'mdp', '1985-06-15'),
+        ('Bob', 'Brown', 'email4@mail.com', 'mdp', '2000-12-10');
     `);
 
     // Insertion dans "ORDER"
