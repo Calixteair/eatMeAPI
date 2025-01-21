@@ -73,7 +73,47 @@ const registerAccount = (req, res) => {
     });
 };
 
+
+
+const getProfil=(req, res ) =>{
+    const id = req.params.id;
+    console.log('[GET] Profil récupéré par ID client :', id);
+
+    Client.getById(id, (err, client) => {
+        if (err) {
+            console.log('Erreur lors de la récupération du profil par ID client.');
+            console.log(err);
+            res.status(500).json({ error: err.message });
+        } else if (!client) {
+            console.log('Aucun profil trouvé pour cet ID client.');
+            res.json([]);
+
+        } else {
+            console.log('[GET] Profil récupéré avec succès.');
+            console.log(client);
+            res.json(client);
+        }
+    });
+
+}
+
+const updateProfil=(req, res) => {
+    const id = req.params.id;
+    const updatedClient = req.body;
+    Client.update(id, updatedClient, (err, result) => {
+        if (err) {
+            res.status(500).json({ error: err.message });
+        } else if (result.changes === 0) {
+            res.status(404).json({ error: 'Client not found' });
+        } else {
+            res.json({ message: 'Client updated successfully' });
+        }
+    });
+}
+
 module.exports = {
     loginAccount,
     registerAccount,
+    getProfil,
+    updateProfil
 };
