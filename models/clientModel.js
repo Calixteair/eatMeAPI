@@ -39,12 +39,12 @@ const Client = {
       WHERE idClient = ?
     `;
     const params = [
-      client.first_name,
-      client.last_name,
-      client.email,
-      client.date_of_birth,
+      client.first_name || client.firstName,
+      client.last_name || client.lastName,
       client.password || 'mdp',
-      id,
+      client.email || client.email,
+      client.date_of_birth || client.dateOfBirth,
+      id || client.idClient,
     ];
     db.run(query, params, function (err) {
       callback(err, { changes: this.changes });
