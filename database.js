@@ -98,7 +98,10 @@ function initializeDatabase() {
         ('Paella', 'Une paella aux fruits de mer', 17.99, 750, 40, 60, 'https://cdn.pixabay.com/photo/2017/06/21/22/44/paella-2428945_1280.jpg'),
         ('Sandwich', 'Un sandwich garni', 9.50, 600, 25, 45, 'https://cdn.pixabay.com/photo/2017/03/10/13/49/fast-food-2132863_1280.jpg'),
         ('Donut', 'Un donut sucré au sucre', 2.99, 300, 4, 40, 'https://cdn.pixabay.com/photo/2017/04/04/16/41/cake-2201876_1280.jpg'),
-        ('Ramen', 'Un bol de ramen chaud et savoureux', 13.99, 700, 30, 50, 'https://cdn.pixabay.com/photo/2022/05/10/18/50/ramen-7187810_1280.jpg');
+        ('Ramen', 'Un bol de ramen chaud et savoureux', 13.99, 700, 30, 50, 'https://cdn.pixabay.com/photo/2022/05/10/18/50/ramen-7187810_1280.jpg'),
+        ('Gateau d anniversaire', 'Joyeux anniversaire M. Laiymani', 0.0, 700, 30, 50, 'https://www.flovidadeco.com/wp-content/uploads/2020/11/cd5586__2.jpg');
+
+      
 
     `);
 
